@@ -1,0 +1,20 @@
+
+Rotas usuario
+/user/create = rota para criar usuario 
+/findby/user/:id = rota para localizar somente um usuario
+/findall/users = rota para localizar todos usuarios
+/delete/user/:id
+/rename/user/:id = rota para alterar dados usuario
+----
+Rotas produtos
+
+/create/produtos = rota responsavel para criar um produto
+/findall/produtos = rota responsavel para buscar todos os produtos
+/findid/produto/:id = rota responsavel por buscar um unico produto por ID
+/rename/produto/:id = rota responsavel para alterar dados de um produto
+/search/produtos = rota responsavel por pesquisa, ex: pode pesquisar sobre um produto que deseja
+
+----
+Rotas Auth
+
+/login/auth = rota responsavel por logar o usuario
