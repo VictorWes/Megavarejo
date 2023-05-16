@@ -18,3 +18,8 @@ Rotas produtos
 Rotas Auth
 
 /login/auth = rota responsavel por logar o usuario
+----
+
+Rotas Consumer (Adicionar produtos carrinho)
+
+/add/carrinho/:id = rota responsavel por adicionar produtos ao carrinho

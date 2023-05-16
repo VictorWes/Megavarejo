@@ -2,13 +2,15 @@ import express from "express";
 import databaseAtlas from "./src/database/database.js";
 import routerUser from "./src/routes/routes.user.js";
 import routerProdutos from "./src/routes/routes.produtos.js";
-
+import routerConsumer from "./src/routes/routes.consumer.js"
 import routerAuth from "./src/routes/routes.auth.js";
 databaseAtlas();
 const app = express();
 const port = 3000;
 app.use(express.json());
 
+
+app.use("/add", routerConsumer)
 app.use("/login", routerAuth);
 
 app.use("/user", routerUser);
