@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-const consumerCarrinho = mongoose.Schema({
-  produtos: {
-    type: Array,
-    required: true,
-  },
-});
+// const consumerCarrinho = mongoose.Schema({
+//   produtos: {
+//     type: Array,
+//     required: true,
+//   },
+// });
 
-export default mongoose.model("Consumer carrinho", consumerCarrinho);
+// export default mongoose.model("Consumer carrinho", consumerCarrinho);

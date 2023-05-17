@@ -11,6 +11,9 @@ app.use(express.json());
 
 
 app.use("/add", routerConsumer)
+app.use("/remove", routerConsumer)
+
+
 app.use("/login", routerAuth);
 
 app.use("/user", routerUser);

@@ -23,3 +23,8 @@ Rotas Auth
 Rotas Consumer (Adicionar produtos carrinho)
 
 /add/carrinho/:id = rota responsavel por adicionar produtos ao carrinho
+
+---
+Rotas teste
+
+/teste/carrinho = rota de teste para possivel adição ao carrinho

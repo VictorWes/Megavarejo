@@ -15,6 +15,11 @@ const cadastroClientesMega = new mongoose.Schema({
     required: true,
     select: false,
   },
+  produtos: {
+    type: Array,
+    required: true,
+    select: false
+  },
 });
 
 cadastroClientesMega.pre("save", async function (next) {

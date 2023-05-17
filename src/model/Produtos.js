@@ -30,6 +30,11 @@ const cadastroProdutosMega = mongoose.Schema({
   promocao: {
     type: String,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cadastrocliente",
+    require: true,
+  },
 });
 
 export default mongoose.model("Produtos Cadastrados", cadastroProdutosMega);
