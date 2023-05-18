@@ -30,7 +30,3 @@ Rotas Consumer (Produtos carrinho)
 
 
 
-
-Rotas teste
-
-/teste/carrinho = rota de teste para possivel adição ao carrinho
