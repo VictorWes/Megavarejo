@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import findByIdUserService from "../service/service.user.js";
-const authorizationMidlleware =  (req, res, next) => {
+const authorizationMidlleware = (req, res, next) => {
   try {
     const { authorization } = req.headers;
 
@@ -20,27 +20,23 @@ const authorizationMidlleware =  (req, res, next) => {
       return res.send(401);
     }
 
-    jwt.verify(
-      token,
-      "26dd8ab4926d5083ebc8940df82aed92",
-      async (error, decoded) => {
-        if (error) {
-          return res.status(401).send({ message: "Token invalid" });
-        }
-        const user = await findByIdUserService.findByIdUserService(decoded.id);
-
-        if (!user || !user.id) {
-          return res.status(401).send({ message: "Token invalid" });
-        }
-
-        req.userId = user.id;
-
-        return next();
+    jwt.verify(token, process.env.MD_HASH, async (error, decoded) => {
+      if (error) {
+        return res.status(401).send({ message: "Token invalid" });
       }
-    );
+      const user = await findByIdUserService.findByIdUserService(decoded.id);
+
+      if (!user || !user.id) {
+        return res.status(401).send({ message: "Token invalid" });
+      }
+
+      req.userId = user.id;
+
+      return next();
+    });
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
 };
 
-export {authorizationMidlleware}
+export { authorizationMidlleware };

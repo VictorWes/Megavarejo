@@ -4,7 +4,7 @@ const loginService = (email) =>
   cadastroClientesMega.findOne({ email: email }).select("+password");
 
 const generateToken = (id) =>
-  jwt.sign({ id: id }, "26dd8ab4926d5083ebc8940df82aed92", {
+  jwt.sign({ id: id }, process.env.MD_HASH, {
     expiresIn: 86400,
   });
 
