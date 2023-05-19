@@ -1,0 +1,516 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Mega varejo",
+    "description": "Nessa API você vai conseguir testar todos os endpoints disponiveis, sendo necessario em algumas rotas realizar o login ou seja se autenticar!",
+    "contact": {
+      "email": "victor.infowb@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Server"
+    }
+  ],
+  "paths": {
+    "/user/create": {
+      "post": {
+        "summary": "Criar um novo usuario",
+        "description": "rota para criar usuario ",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CadastroCliente"
+              },
+              "examples": {
+                "Users": {
+                  "value": {
+                    "primeiroNome": "Victor Wesley",
+                    "email": "Nighmtare",
+                    "password": "Teste@gmail.com",
+                    "produtos": "1234567"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/CadastroCliente"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/produtos": {
+      "get": {
+        "summary": "Procurar produtos",
+        "description": "rota responsavel por pesquisa, ex: pode pesquisar sobre um produto que deseja",
+        "tags": ["Produtos"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nomeProduto",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Produtos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create/produtos": {
+      "post": {
+        "summary": "Criar um produto",
+        "description": "rota responsavel para criar um produto",
+        "tags": ["Produtos"],
+
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produtos"
+              },
+              "examples": {
+                "News": {
+                  "value": {
+                    "nomeProduto": "Frango",
+                    "categoria": "Frios",
+                    "fabricadoPor": "Sadia",
+                    "validadeProduto": "12/05/2024",
+                    "quantidade": "10",
+                    "preco": "12,33",
+                    "promocao": "não"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Not Found"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Produtos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login/auth": {
+      "post": {
+        "summary": "Login user",
+        "description": "rota responsavel por logar o usuario",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CadastroCliente"
+              },
+              "examples": {
+                "User": {
+                  "value": {
+                    "email": "victor@gmail.com",
+                    "password": "1234567"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/add/carrinho/{id}": {
+      "post": {
+        "summary": "adicionar produto carrinho",
+        "description": "rota responsavel por adicionar produtos ao carrinho",
+        "tags": ["Produtos"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produtos"
+              },
+              "examples": {
+                "Produtos": {
+                  "value": {
+                    "nomeProduto": "Frango",
+                    "categoria": "Frios",
+                    "fabricadoPor": "Sadia",
+                    "validadeProduto": "12/05/2024",
+                    "quantidade": "10",
+                    "preco": "12,33",
+                    "promocao": "não"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Produtos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rename/user/{id}": {
+      "patch": {
+        "summary": "Alter dados usuario",
+        "description": "rota para alterar dados usuario",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CadastroCliente"
+              },
+              "examples": {
+                "Post": {
+                  "value": {
+                    "email": "victor@gmail.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/CadastroCliente"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/remove/carrinho/{idProduto}/{idProdutoInCarr}": {
+      "patch": {
+        "summary": "Remover produto carrinho",
+        "description": "rota responsavel por remover produtos dentro do carrinho",
+        "tags": ["Produtos"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idProduto",
+            "type": "string",
+            "description": "ID produto",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "idProdutoInCarr",
+            "type": "string",
+            "description": "Id produto carrinho",
+            "required": true
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Produtos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/findby/user/{id}": {
+      "get": {
+        "summary": "Search user by id",
+        "description": "Route responsible for searching for user by id",
+        "tags": ["Users"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CadastroCliente"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rename/produto/{id}": {
+      "patch": {
+        "summary": "Renomear dados produto",
+        "description": "rota responsavel para alterar dados de um produto",
+        "tags": ["Produtos"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produtos"
+              },
+              "examples": {
+                "User": {
+                  "value": {
+                    "nomeProduto": "Bata frita 2kg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "Produto atualizado com sucesso"
+          }
+        }
+      }
+    },
+
+    "/findid/produto/{id}": {
+      "get": {
+        "summary": "ID por produto",
+        "description": "rota responsavel por buscar um unico produto por ID",
+        "tags": ["Produtos"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Produtos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/findall/users": {
+      "get": {
+        "summary": "Search all users",
+        "description": "Route responsible for searching all users",
+        "tags": ["Users"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/CadastroCliente"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/findall/produtos": {
+      "get": {
+        "summary": "Procurar todos os produtos",
+        "description": "rota responsavel para buscar todos os produtos",
+        "tags": ["Produtos"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Produtos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete/user/{id}": {
+      "delete": {
+        "summary": "deletar ID",
+        "description": "rota responsavel por deletar um id",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CadastroCliente"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Not Found"
+        },
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/CadastroCliente"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "CadastroCliente": {
+        "type": "object",
+        "properties": {
+          "primeiroNome:": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "produtos": {
+            "type": "Array"
+          }
+        }
+      },
+      "Produtos": {
+        "type": "object",
+        "properties": {
+          "nomeProduto": {
+            "type": "string"
+          },
+          "categoria": {
+            "type": "string"
+          },
+          "fabricadoPor": {
+            "type": "string"
+          },
+          "validadeProduto": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "string"
+          },
+          "promocao": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

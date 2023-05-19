@@ -3,7 +3,7 @@ Rotas usuario
 /user/create = rota para criar usuario 
 /findby/user/:id = rota para localizar somente um usuario
 /findall/users = rota para localizar todos usuarios
-/delete/user/:id
+/delete/user/:id = rota responsavel por deletar um id
 /rename/user/:id = rota para alterar dados usuario
 ----
 Rotas produtos
@@ -25,6 +25,9 @@ Rotas Consumer (Produtos carrinho)
 /add/carrinho/:id = rota responsavel por adicionar produtos ao carrinho
 /remove/carrinho/:idProduto/:idProdutoInCarr = rota responsavel por remover produtos dentro do carrinho
 ---
+
+Rotas swagger
+/doc/ = Rota responsavel por rodar o swagger e rodar o documento json
 
 
 

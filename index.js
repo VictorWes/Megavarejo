@@ -5,6 +5,7 @@ import routerProdutos from "./src/routes/routes.produtos.js";
 import routerConsumer from "./src/routes/routes.consumer.js";
 import routerAuth from "./src/routes/routes.auth.js";
 import dotenv from "dotenv";
+import routerSwagger from "./src/routes/routes.swagger.cjs";
 dotenv.config();
 databaseAtlas();
 
@@ -12,6 +13,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+app.use("/doc", routerSwagger);
 
 app.use("/add", routerConsumer);
 app.use("/remove", routerConsumer);
